@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 function onSubmit(form) {
   let data = {
     user: form.elements['user'].value,
@@ -9,5 +9,14 @@ function onSubmit(form) {
   if (result === '100') {
     form.hidden = true;
   }
+  helloWorld.innerHTML = hello(data.user);
   console.log(data);
+}
+
+function hello(name) {
+  return 'Привет, ' + name;
+}
+
+if (typeof exports === 'object') {
+  exports.hello = hello;
 }
