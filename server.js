@@ -10,10 +10,14 @@ app.use(technologger);
 
 app.post('/users', (req, res) => {
     console.log(req.body);
-    res.send('0');
-    // TODO: вернуть количество обращений
+    let email = req.body.email;
+    let count = (clients.get(email) || 0);
+    res.send(count.toString());
+    clients.set(email, count + 1);
 });
 
 app.listen(process.env.PORT || 3000, () => {
 	console.log(`App started on port ${process.env.PORT || 3000}`);
 });
+
+clients = new Map();
